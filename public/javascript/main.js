@@ -1,3 +1,5 @@
+import SpriteSheet from './spritesheet.js';
+
 function loadImage(url){
     return new Promise(function(resolve){
         const image = new Image();
@@ -6,14 +8,6 @@ function loadImage(url){
         });
         image.src = url;
     });
-}
-
-class SpriteSheet{
-    constructor(image, width, height){
-        this.image = image;
-        this.width = width;
-        this.height = height;
-    }
 }
 
 const canvas = document.getElementById('screen');
@@ -26,9 +20,4 @@ loadImage('/img/tiles.png').then(function(image){
     sprites.define('ground', 0, 0);
     sprites.draw('ground', context, 45, 62);
 
-    context.drawImage(image, 
-        0, 0, 
-        16, 16, 
-        0, 0, 
-        16, 16); 
 });
