@@ -1,3 +1,5 @@
+import SpriteSheet from './spritesheet.js';
+
 function loadImage(url){
     return new Promise(function(resolve){
         const image = new Image();
