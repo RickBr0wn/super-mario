@@ -20,13 +20,8 @@ loadImage('/img/tiles.png').then(function(image){
     sprites.define('sky', 3, 23);
 
     loadLevel('1-1').then(level =>{
-        console.log(level);
-        drawBackground(level.backgrounds[0], context, sprites);
+        level.backgrounds.forEach(background =>{
+            drawBackground(background, context, sprites);
+        });
     });
-
-    for(let x = 0; x < 25; x++){
-        for(let y = 12; y < 14; y++){
-            sprites.drawTile('ground', context, x, y);
-        }
-    }
 });
