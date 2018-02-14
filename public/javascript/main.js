@@ -19,19 +19,26 @@ Promise.all([
     const backgroundLayer = createBackgroundLayer(level.backgrounds, backgroundSprites);
     // comp.layers.push(backgroundLayer);
 
-    const gravity = 0.5;
+    const gravity = 8;
+    mario.pos.set(100, 100);
+    mario.vel.set(90, -400);
 
     const spriteLayer = createSpriteLayer(mario);
     comp.layers.push(spriteLayer);
 
-    function update(){
-        comp.draw(context);
-        mario.update();
-        mario.vel.y += gravity;
-        requestAnimationFrame(update);
+    let deltaTime = 0;
+    let lastTime = 0;
 
-        // setTimeout(update, 1000/144);
+    function update(time){
+        deltaTime = (time - lastTime)/1000;
+        comp.draw(context);
+        mario.update(deltaTime);
+        console.log(mario.pos);
+        mario.vel.y += gravity;
+        // requestAnimationFrame(update);
+        setTimeout(update, 1000/60, performance.now());
+        lastTime = time;
     }
 
-    update();
+    update(0);
 });
